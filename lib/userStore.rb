@@ -67,8 +67,13 @@ class UserStore < Store
         item_array[item[0].to_i - 1][3] = item_array[item[0].to_i - 1][3].to_i - quantity
         CSV.open('db/items.csv', 'w') do |csv|
         end
-        item_array.each do |item|
+        i = 0;
+        while (i < item_array.length - 1)
+            item = item_array[i]
             File.open("db/items.csv", 'a+') { |f| f.write("#{item[0]},#{item[1]},#{item[2]},#{item[3]},#{item[4]},#{item[5]},#{item[6]},#{item[7]},#{item[8]},#{item[9]},#{item[10]},#{item[11]}\n")}
+            i += 1
         end
+        item = item_array[i]
+        File.open("db/items.csv", 'a+') { |f| f.write("#{item[0]},#{item[1]},#{item[2]},#{item[3]},#{item[4]},#{item[5]},#{item[6]},#{item[7]},#{item[8]},#{item[9]},#{item[10]},#{item[11]}")}
     end
 end
