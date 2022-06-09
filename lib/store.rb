@@ -8,15 +8,29 @@ class Store
         
     end
 
-    def displayItems
+    def displayItems(from = "all")
         puts "==> Affichage des items <=="
         items_array = @controller.all.sort { |a,b| a[1] <=> b[1] }
         items_array.each do |item|
-            puts "#{item[0]}. #{item[1]}"
-            if (item[7] == "hard drive")
-                puts "Storage #{item[9]}"
+            if (from == "all")
+                puts "#{item[0]}. #{item[1]}"
+                if (item[7] == "hard drive")
+                    puts "Storage #{item[9]}"
+                end
+                puts "\n"
+            elsif (from == "shop" && item[10] == "shop")
+                puts "#{item[0]}. #{item[1]}"
+                if (item[7] == "hard drive")
+                    puts "Storage #{item[9]}"
+                end
+                puts "\n"
+            elsif (item[10] != "shop" && from != "shop")
+                puts "#{item[0]}. #{item[1]}"
+                if (item[7] == "hard drive")
+                    puts "Storage #{item[9]}"
+                end
+                puts "\n"
             end
-            puts "\n"
         end
     end
 

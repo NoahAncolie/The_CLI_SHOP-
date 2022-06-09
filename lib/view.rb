@@ -3,7 +3,7 @@ require_relative 'store'
 
 class View
   attr_accessor :author, :content, :params
-  def create_item
+  def create_item(author)
     print "Nom\n>"
     @name = gets.chomp
     print "Prix\n>"
@@ -46,7 +46,7 @@ class View
       end
     end
 
-    @params = {id: Controller.new.all.length + 1, name: @name, price: @price, quantity: @quantity, brand: @brand, description: @description, size: @size, type: @type, color: @color, storage: @storage}
+    @params = {id: Controller.new.all.length + 1, name: @name, price: @price, quantity: @quantity, brand: @brand, description: @description, size: @size, type: @type, color: @color, storage: @storage, author: author}
     return @params
   end
 

@@ -8,10 +8,10 @@ class Controller
     @view = View.new
   end
 
-  def create_item
-    params = @view.create_item
-    @gossip = Item.new(params.keys, params.values)
-    @gossip.save
+  def create_item(author = "shop")
+    params = @view.create_item(author)
+    @item = Item.new(params.keys, params.values)
+    @item.save
   end
 
   def all

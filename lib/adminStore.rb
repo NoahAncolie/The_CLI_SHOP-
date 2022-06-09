@@ -22,7 +22,7 @@ class AdminStore < Store
         CSV.open('db/items.csv', 'w') do |csv|
         end
         item_array.each do |item|
-            File.open("db/items.csv", 'a+') { |f| f.write("#{item[0]},#{item[1]},#{item[2]},#{item[3]},#{item[4]},#{item[5]},#{item[6]},#{item[7]},#{item[8]},#{item[9]}\n")}
+            File.open("db/items.csv", 'a+') { |f| f.write("#{item[0]},#{item[1]},#{item[2]},#{item[3]},#{item[4]},#{item[5]},#{item[6]},#{item[7]},#{item[8]},#{item[9]},#{item[10]},#{item[11]}\n")}
         end
     end
 
@@ -43,7 +43,7 @@ class AdminStore < Store
         CSV.open('db/items.csv', 'w') do |csv|
         end
         item_array.each do |item|
-            File.open("db/items.csv", 'a+') { |f| f.write("#{item[0]},#{item[1]},#{item[2]},#{item[3]},#{item[4]},#{item[5]},#{item[6]},#{item[7]},#{item[8]},#{item[9]}\n")}
+            File.open("db/items.csv", 'a+') { |f| f.write("#{item[0]},#{item[1]},#{item[2]},#{item[3]},#{item[4]},#{item[5]},#{item[6]},#{item[7]},#{item[8]},#{item[9]},#{item[10]},#{item[11]}\n")}
         end
         return (self.navbar(item))
     end

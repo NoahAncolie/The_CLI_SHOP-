@@ -47,24 +47,34 @@ class Router
   def user_interface
     while (true)
     puts "{{ {  {   { 🛒 | MAGASIN | 🛒 }   }  } }}"
-      puts "\n1.Choisir un Item\n2.Afficher les items\n3.Afficher par ordre de prix croissant\n4.Afficher par ordre de prix décroissant\n5.Afficher par type\n0.Revenir en arrière"
+      puts "1.Ajouter un Item\n2.Choisir un Item\n3.Afficher les items\n4.Afficher par ordre de prix croissant\n5.Afficher par ordre de prix décroissant\n6.Afficher par type\n7.Afficher les items du magasin\n8.Afficher les items des Users\n0.Revenir en arrière"
       params = gets.chomp.to_i
       
       case params
         when 1
-          @userStore.chooseId
+          puts "==> Création de l'Item <=="
+          puts "Entrez votre numéro de téléphone"
+          phone = gets.chomp
+          @controller.create_item(phone)
         when 2
-          @userStore.displayItems
+          @userStore.chooseId
         when 3
+          @userStore.displayItems
+        when 4
           @userStore.sortItems(false, true, false, @controller.all)
           return (self.user_interface)
-        when 4
+        when 5
           @userStore.sortItems(false, true, true, @controller.all)
           return (self.user_interface)
-        when 5
-          self.shoesDisplayNav
+        when 6
+          self.typeDisplayNav
           return (self.user_interface)
+        when 7
+          @userStore.displayItems("shop")
+        when 8
+          @userStore.displayItems("+33")
         when 0
+          3.20
           break
         else
           puts "Choix indisponible"
@@ -125,7 +135,7 @@ class Router
     end
   end
 
-  def shoesDisplayNav
+  def typeDisplayNav
     while (true)
       puts "{{ {  {   { 📀 | TYPE | 📀 }   }  } }}"
       array_items = 0
