@@ -1,5 +1,6 @@
 require_relative 'item'
 require_relative 'view'
+require 'colorize'
 require 'csv'
 
 class Controller

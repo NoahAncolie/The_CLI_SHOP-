@@ -1,6 +1,7 @@
 require 'csv'
 require_relative 'controller'
 require_relative 'store'
+require 'colorize'
 
 class UserStore < Store
 

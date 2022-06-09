@@ -1,5 +1,6 @@
 require 'csv'
 require_relative 'controller'
+require 'colorize'
 
 class Store
 
@@ -9,7 +10,7 @@ class Store
     end
 
     def displayItems(from = "all")
-        puts "==> Affichage des items <=="
+        puts "{{ {  {   { 🦑 | ITEMS | 🦑 }   }  } }}"
         items_array = @controller.all.sort { |a,b| a[1] <=> b[1] }
         items_array.each do |item|
             if (from == "all")
@@ -44,6 +45,7 @@ class Store
         elsif (bySize && !up)
             items_array = items_array.sort { |a,b| a[6] <=> b[6] }
         end
+        puts "{{ {  {   { 🦑 | ITEMS | 🦑 }   }  } }}"
         items_array.each do |item|
             puts "#{item[0]}.#{item[1]}\nSize : #{item[6]}\nPrix : #{item[2]}"
             if (item[7] == "hard drive")
@@ -61,17 +63,20 @@ class Store
             if (params <= @controller.all.length)
                 item = @controller.all[params]
                 puts "\n💎 #{item[1]} 💎"
-                puts"coût : #{item[2]}"
-                puts"quantité : #{item[3].to_i <= 0 ? "Rupture de stock" : item[3]}"
-                puts"marque : #{item[4]}"
-                puts"description : #{item[5]}"
+                puts"#{"coût".blue} : #{item[2]}"
+                puts"#{"quantité".blue} : #{item[3].to_i <= 0 ? "Rupture de stock" : item[3]}"
+                puts"#{"marque".blue} : #{item[4]}"
+                puts"#{"description".blue} : #{item[5]}"
                 if (item[7] != 'other')
-                    puts "Taille : #{item[6]}"
+                    puts "#{"Taille".blue} : #{item[6]}"
                 end
                 if (item[7] == "hard drive")
-                    puts "Storage #{item[9]}"
+                    puts "#{"Storage".blue} #{item[9]}"
                 end
-                puts"color : #{item[8]}"
+                puts"#{"Color".blue} : #{item[8]}"
+                if (item[11] != 'shop')
+                    puts "#{"Contact du vendeur".blue} : #{item[11]}"
+                end
                 return (self.navbar(item))
             else
                 p "Choisissez un Item présent sur la liste"

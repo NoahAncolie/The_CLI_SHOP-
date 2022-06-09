@@ -1,5 +1,6 @@
 require_relative 'controller'
 require_relative 'store'
+require 'colorize'
 
 class View
   attr_accessor :author, :content, :params

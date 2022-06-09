@@ -2,6 +2,7 @@ require_relative 'controller'
 require_relative 'store'
 require_relative 'userStore'
 require_relative 'adminStore'
+require 'colorize'
 require 'pry'
 
 class Router
@@ -16,9 +17,9 @@ class Router
     while (true)
     puts "{{ {  {   { 🏠 | ACCUEIL | 🏠 }   }  } }}"
       puts "\nVous êtes ?"
-      puts "1. Admin 🛡️"
-      puts "2. User 👤"
-      puts "0. Sortir 🚪🚶"
+      puts "1. #{"Admin".blue} 🛡️"
+      puts "2. #{"User".blue} 👤"
+      puts "0. #{"Sortir".red} 🚪🚶"
       params = gets.chomp.to_i
       
       case params
@@ -28,7 +29,7 @@ class Router
           if (password == "123123123")
             self.admin_interface
           else
-            puts ("\n❌ Wrong Password ! ❌")
+            puts ("\n❌ Pas le bon mot de passe ! ❌".red)
             self.perform
           end
         when 2
@@ -36,7 +37,7 @@ class Router
         when 0
           break
         else
-          puts "Ce choix n'existe pas, merci de ressayer"
+          puts "Ce choix n'existe pas, merci de ressayer".yellow
           return (self.perform)
       end
     end
@@ -47,7 +48,7 @@ class Router
   def user_interface
     while (true)
     puts "{{ {  {   { 🛒 | MAGASIN | 🛒 }   }  } }}"
-      puts "1.Ajouter un Item\n2.Choisir un Item\n3.Afficher les items\n4.Afficher par ordre de prix croissant\n5.Afficher par ordre de prix décroissant\n6.Afficher par type\n7.Afficher les items du magasin\n8.Afficher les items des Users\n0.Revenir en arrière"
+      puts "1.#{"Ajouter".blue} un Item\n2.#{"Choisir".blue} un Item\n3.Afficher les items\n4.Afficher par ordre de #{"prix croissant".yellow}\n5.Afficher par ordre de #{"prix décroissant".yellow}\n6.Afficher par #{"type".yellow}\n7.Afficher les items du #{"Magasin".yellow}\n8.Afficher les items des #{"Users".yellow}\n0.#{"Revenir en arrière".red}"
       params = gets.chomp.to_i
       
       case params
@@ -85,12 +86,12 @@ class Router
   def admin_interface
     puts "{{ {  {   { 📦 | INVENTAIRE DE MAGASIN | 📦 }   }  } }}"
       puts "\nque veux-tu faire ?"
-      puts "1. Ajouter un Item"
+      puts "1. #{"Ajouter un Item".blue}"
       puts "2. Afficher tous les Items"
-      puts "3. Afficher tous les Items par prix croissant"
-      puts "4. Afficher tous les Items par prix décroissant"
-      puts "5. Supprimer un Item"
-      puts "0. Quitter le dashboard"
+      puts "3. Afficher tous les Items par #{"prix croissant".yellow}"
+      puts "4. Afficher tous les Items par #{"prix décroissant".yellow}"
+      puts "5. #{"Supprimer un Item".yellow}"
+      puts "0. #{"Quitter le dashboard".red}"
       params = gets.chomp.to_i
       
       case params
@@ -102,10 +103,10 @@ class Router
             @adminStore.displayItems
           self.navbar_admin
         when 3
-            @adminStore.displayByPriceUp
+            @adminStore.sortItems(false, true, false, @controller.all)
             self.navbar_admin
         when 4
-            @adminStore.displayByPriceDown
+            @adminStore.sortItems(false, true, true, @controller.all)
             self.navbar_admin
         when 5
             @adminStore.displayItems
@@ -114,7 +115,7 @@ class Router
         when 0
           puts "A bientôt !"
         else
-          puts "Ce choix n'existe pas, merci de ressayer"
+          puts "Ce choix n'existe pas, merci de ressayer".red
           self.admin_interface
       end
   end

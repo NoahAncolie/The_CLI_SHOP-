@@ -1,5 +1,6 @@
 require 'csv'
 require_relative 'controller'
+require 'colorize'
 
 class AdminStore < Store
 
@@ -42,9 +43,14 @@ class AdminStore < Store
 
         CSV.open('db/items.csv', 'w') do |csv|
         end
-        item_array.each do |item|
+        i = 0;
+        while (i < item_array.length - 1)
+            item = item_array[i]
             File.open("db/items.csv", 'a+') { |f| f.write("#{item[0]},#{item[1]},#{item[2]},#{item[3]},#{item[4]},#{item[5]},#{item[6]},#{item[7]},#{item[8]},#{item[9]},#{item[10]},#{item[11]}\n")}
+            i += 1
         end
+        item = item_array[i]
+        File.open("db/items.csv", 'a+') { |f| f.write("#{item[0]},#{item[1]},#{item[2]},#{item[3]},#{item[4]},#{item[5]},#{item[6]},#{item[7]},#{item[8]},#{item[9]},#{item[10]},#{item[11]}")}
         return (self.navbar(item))
     end
 
