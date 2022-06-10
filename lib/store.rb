@@ -16,19 +16,19 @@ class Store
             if (from == "all")
                 puts "#{item[0]}. #{item[1]}"
                 if (item[7] == "hard drive")
-                    puts "Storage #{item[9]}"
+                    puts "      #{"Storage".yellow} #{item[9]}"
                 end
                 puts "\n"
             elsif (from == "shop" && item[10] == "shop")
                 puts "#{item[0]}. #{item[1]}"
                 if (item[7] == "hard drive")
-                    puts "Storage #{item[9]}"
+                    puts "      #{"Storage".yellow} #{item[9]}"
                 end
                 puts "\n"
             elsif (item[10] != "shop" && from != "shop")
                 puts "#{item[0]}. #{item[1]}"
                 if (item[7] == "hard drive")
-                    puts "Storage #{item[9]}"
+                    puts "      #{"Storage".yellow} #{item[9]}"
                 end
                 puts "\n"
             end
@@ -47,11 +47,11 @@ class Store
         end
         puts "{{ {  {   { 🦑 | ITEMS | 🦑 }   }  } }}"
         items_array.each do |item|
-            puts "#{item[0]}.#{item[1]}\nSize : #{item[6]}\nPrix : #{item[2]}"
+            puts "#{item[0]}.#{item[1]}"
             if (item[7] == "hard drive")
-                puts "Storage #{item[9]}"
-                puts "\n"
+                puts "#{"Storage".yellow} #{item[9]}"
             end
+            print "\n"
         end
     end
 
@@ -74,8 +74,8 @@ class Store
                     puts "#{"Storage".blue} #{item[9]}"
                 end
                 puts"#{"Color".blue} : #{item[8]}"
-                if (item[11] != 'shop')
-                    puts "#{"Contact du vendeur".blue} : #{item[11]}"
+                if (item[10] != 'shop')
+                    puts "#{"Contact du vendeur".blue} : #{item[10]}"
                 end
                 return (self.navbar(item))
             else
