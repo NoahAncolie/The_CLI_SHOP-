@@ -20,7 +20,7 @@ class View
 
     if (@price.length < 1|| @name.length > 101 || @name.length < 1 || @description.length < 1 || @brand.length < 1 || @color.length < 1)
       p "Entrez des valeurs convenables"
-      return (self.create_item)
+      return (self.create_item(author))
     end
 
     puts "C'est un objet spécifique ? (y/n)"
