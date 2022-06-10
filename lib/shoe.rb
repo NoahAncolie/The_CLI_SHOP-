@@ -5,3 +5,5 @@ class Shoe < Item
       @item = values
     end
 end
+
+# Adrien Benaceur

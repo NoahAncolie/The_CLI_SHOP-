@@ -112,3 +112,5 @@ class AdminStore < Store
         end
     end
 end
+
+# Adrien Benaceur

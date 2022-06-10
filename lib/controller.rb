@@ -38,3 +38,5 @@ class Controller
     items_array = items_array.select { |a| a[7] == 'poster' }
   end
 end
+
+# Adrien Benaceur

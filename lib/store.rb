@@ -84,3 +84,5 @@ class Store
         end
     end
 end
+
+# Adrien Benaceur

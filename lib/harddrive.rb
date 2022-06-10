@@ -5,3 +5,5 @@ class Poster < Item
       @item = values
     end
 end
+
+# Adrien Benaceur
